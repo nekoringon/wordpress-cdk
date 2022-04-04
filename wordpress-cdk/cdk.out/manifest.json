@@ -23,7 +23,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/6f6eb08573f94db1758816a333f272c24dfe2037049874b7aae5fa3c814a8163.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/cca7248a5da61ea538581550f51a384a1b4a973e14645a188e1fef092ea93364.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -39,6 +39,12 @@
         "WordpressCdkStack.assets"
       ],
       "metadata": {
+        "/WordpressCdkStack/Vpc": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Vpc"
+          }
+        ],
         "/WordpressCdkStack/CDKMetadata/Default": [
           {
             "type": "aws:cdk:logicalId",

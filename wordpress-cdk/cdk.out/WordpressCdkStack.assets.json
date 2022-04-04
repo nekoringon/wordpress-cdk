@@ -1,7 +1,7 @@
 {
   "version": "16.0.0",
   "files": {
-    "6f6eb08573f94db1758816a333f272c24dfe2037049874b7aae5fa3c814a8163": {
+    "cca7248a5da61ea538581550f51a384a1b4a973e14645a188e1fef092ea93364": {
       "source": {
         "path": "WordpressCdkStack.template.json",
         "packaging": "file"
@@ -9,7 +9,7 @@
       "destinations": {
         "current_account-current_region": {
           "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
-          "objectKey": "6f6eb08573f94db1758816a333f272c24dfe2037049874b7aae5fa3c814a8163.json",
+          "objectKey": "cca7248a5da61ea538581550f51a384a1b4a973e14645a188e1fef092ea93364.json",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
         }
       }

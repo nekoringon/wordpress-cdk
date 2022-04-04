@@ -16,6 +16,28 @@
         "id": "WordpressCdkStack",
         "path": "WordpressCdkStack",
         "children": {
+          "Vpc": {
+            "id": "Vpc",
+            "path": "WordpressCdkStack/Vpc",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::EC2::VPC",
+              "aws:cdk:cloudformation:props": {
+                "cidrBlock": "172.16.0.0/17",
+                "enableDnsHostnames": true,
+                "enableDnsSupport": true,
+                "tags": [
+                  {
+                    "key": "Name",
+                    "value": "wordpress-cdk-dev-vpc"
+                  }
+                ]
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.CfnVPC",
+              "version": "2.19.0"
+            }
+          },
           "CDKMetadata": {
             "id": "CDKMetadata",
             "path": "WordpressCdkStack/CDKMetadata",
