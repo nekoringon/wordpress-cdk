@@ -1,9 +1,26 @@
 {
   "Resources": {
+    "Vpc": {
+      "Type": "AWS::EC2::VPC",
+      "Properties": {
+        "CidrBlock": "172.16.0.0/17",
+        "EnableDnsHostnames": true,
+        "EnableDnsSupport": true,
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "wordpress-cdk-dev-vpc"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "WordpressCdkStack/Vpc"
+      }
+    },
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAA/zPSM7TUM1BMLC/WTU7J1s3JTNKrDi5JTM7WcU7LC0otzi8tSk4FsZ3z81IySzLz82p18vJTUvWyivXLDE1Aug0Vs4ozM3WLSvNKMnNT9YIgNACjVUSUWQAAAA=="
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/zPSM7TUM1BMLC/WTU7J1s3JTNKrDi5JTM7WAQrFpyYb6Tmn5YUFOOsAqaDU4vzSouRUENs5Py8lsyQzP69WJy8/JVUvq1i/zNAEZJihYlZxZqZuUWleSWZuql4QhAYAjfO0EGgAAAA="
       },
       "Metadata": {
         "aws:cdk:path": "WordpressCdkStack/CDKMetadata/Default"
