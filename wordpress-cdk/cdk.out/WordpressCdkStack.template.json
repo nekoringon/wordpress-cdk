@@ -3,7 +3,7 @@
     "Vpc": {
       "Type": "AWS::EC2::VPC",
       "Properties": {
-        "CidrBlock": "172.16.0.0/17",
+        "CidrBlock": "172.16.0.0/16",
         "EnableDnsHostnames": true,
         "EnableDnsSupport": true,
         "Tags": [
@@ -17,10 +17,67 @@
         "aws:cdk:path": "WordpressCdkStack/Vpc"
       }
     },
+    "SubnetPublic": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "VpcId": {
+          "Ref": "Vpc"
+        },
+        "AvailabilityZone": "ap-northeast-1a",
+        "CidrBlock": "172.16.11.0/24",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "wordpress-cdk-dev-subnet-public"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "WordpressCdkStack/SubnetPublic"
+      }
+    },
+    "SubnetApp": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "VpcId": {
+          "Ref": "Vpc"
+        },
+        "AvailabilityZone": "ap-northeast-1a",
+        "CidrBlock": "172.16.21.0/24",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "wordpress-cdk-dev-subnet-app"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "WordpressCdkStack/SubnetApp"
+      }
+    },
+    "SubnetDb": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "VpcId": {
+          "Ref": "Vpc"
+        },
+        "AvailabilityZone": "ap-northeast-1a",
+        "CidrBlock": "172.16.22.0/24",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "wordpress-cdk-dev-subnet-db"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "WordpressCdkStack/SubnetDb"
+      }
+    },
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAA/zPSM7TUM1BMLC/WTU7J1s3JTNKrDi5JTM7WAQrFpyYb6Tmn5YUFOOsAqaDU4vzSouRUENs5Py8lsyQzP69WJy8/JVUvq1i/zNAEZJihYlZxZqZuUWleSWZuql4QhAYAjfO0EGgAAAA="
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/yWMOQqAMBAA32KfrEZsrPMBUbAVTVZYjw2YRAvx7xqsZphiSlA1FNl4eWnsKjea4O7CaFbxpQFNCbeeuW+0+NDFiTE8SVv0Lh4Gk2vHlgI5fgQ7i7D4/FRVGqts8UTyiBxoR2h/vjCF8ut0AAAA"
       },
       "Metadata": {
         "aws:cdk:path": "WordpressCdkStack/CDKMetadata/Default"

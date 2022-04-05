@@ -22,7 +22,7 @@
             "attributes": {
               "aws:cdk:cloudformation:type": "AWS::EC2::VPC",
               "aws:cdk:cloudformation:props": {
-                "cidrBlock": "172.16.0.0/17",
+                "cidrBlock": "172.16.0.0/16",
                 "enableDnsHostnames": true,
                 "enableDnsSupport": true,
                 "tags": [
@@ -35,6 +35,78 @@
             },
             "constructInfo": {
               "fqn": "aws-cdk-lib.aws_ec2.CfnVPC",
+              "version": "2.19.0"
+            }
+          },
+          "SubnetPublic": {
+            "id": "SubnetPublic",
+            "path": "WordpressCdkStack/SubnetPublic",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+              "aws:cdk:cloudformation:props": {
+                "vpcId": {
+                  "Ref": "Vpc"
+                },
+                "availabilityZone": "ap-northeast-1a",
+                "cidrBlock": "172.16.11.0/24",
+                "tags": [
+                  {
+                    "key": "Name",
+                    "value": "wordpress-cdk-dev-subnet-public"
+                  }
+                ]
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.CfnSubnet",
+              "version": "2.19.0"
+            }
+          },
+          "SubnetApp": {
+            "id": "SubnetApp",
+            "path": "WordpressCdkStack/SubnetApp",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+              "aws:cdk:cloudformation:props": {
+                "vpcId": {
+                  "Ref": "Vpc"
+                },
+                "availabilityZone": "ap-northeast-1a",
+                "cidrBlock": "172.16.21.0/24",
+                "tags": [
+                  {
+                    "key": "Name",
+                    "value": "wordpress-cdk-dev-subnet-app"
+                  }
+                ]
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.CfnSubnet",
+              "version": "2.19.0"
+            }
+          },
+          "SubnetDb": {
+            "id": "SubnetDb",
+            "path": "WordpressCdkStack/SubnetDb",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+              "aws:cdk:cloudformation:props": {
+                "vpcId": {
+                  "Ref": "Vpc"
+                },
+                "availabilityZone": "ap-northeast-1a",
+                "cidrBlock": "172.16.22.0/24",
+                "tags": [
+                  {
+                    "key": "Name",
+                    "value": "wordpress-cdk-dev-subnet-db"
+                  }
+                ]
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.CfnSubnet",
               "version": "2.19.0"
             }
           },
