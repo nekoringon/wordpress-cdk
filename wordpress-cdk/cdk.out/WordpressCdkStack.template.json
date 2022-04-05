@@ -74,10 +74,38 @@
         "aws:cdk:path": "WordpressCdkStack/SubnetDb"
       }
     },
+    "InternetGateway": {
+      "Type": "AWS::EC2::InternetGateway",
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "wordpress-cdk-dev-internet-gateway"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "WordpressCdkStack/InternetGateway"
+      }
+    },
+    "VpcGatewayAttachment": {
+      "Type": "AWS::EC2::VPCGatewayAttachment",
+      "Properties": {
+        "VpcId": {
+          "Ref": "Vpc"
+        },
+        "InternetGatewayId": {
+          "Ref": "InternetGateway"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "WordpressCdkStack/VpcGatewayAttachment"
+      }
+    },
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAA/yWMOQqAMBAA32KfrEZsrPMBUbAVTVZYjw2YRAvx7xqsZphiSlA1FNl4eWnsKjea4O7CaFbxpQFNCbeeuW+0+NDFiTE8SVv0Lh4Gk2vHlgI5fgQ7i7D4/FRVGqts8UTyiBxoR2h/vjCF8ut0AAAA"
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/y2OwQrCMAyGn2X3ttrhxaP0IN5kg12l6yJmcym0qUPG3t2Wefq+/H8IqZU+q2NllyjdMMk39mpt2bpJ5OgBrlareVJ3NyKjTT0BF7sRQ8h+tQyL/Yp95z9dOB94zUC8laKB6FNwUNx4GpDR0ybID6DGePjoU/lBV2NElCER4wyq2fkDTwnXcp8AAAA="
       },
       "Metadata": {
         "aws:cdk:path": "WordpressCdkStack/CDKMetadata/Default"

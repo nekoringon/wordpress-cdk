@@ -1,6 +1,6 @@
 import { Stack, StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import { CfnVPC, CfnSubnet } from "aws-cdk-lib/aws-ec2";
+import { CfnVPC, CfnSubnet, CfnInternetGateway, CfnVPCGatewayAttachment } from "aws-cdk-lib/aws-ec2";
 
 export class WordpressCdkStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -32,6 +32,15 @@ export class WordpressCdkStack extends Stack {
 	vpcId: vpc.ref,
 	availabilityZone: 'ap-northeast-1a',
 	tags: [{ key: 'Name', value: 'wordpress-cdk-dev-subnet-db'}]
+    })
+
+    const igw = new CfnInternetGateway(this, 'InternetGateway', {
+	tags: [{ key: 'Name', value: 'wordpress-cdk-dev-internet-gateway'}]
+    }) 
+
+    new CfnVPCGatewayAttachment(this, 'VpcGatewayAttachment', {
+	vpcId: vpc.ref,
+	internetGatewayId: igw.ref
     })
   }
 }
