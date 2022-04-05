@@ -110,6 +110,44 @@
               "version": "2.19.0"
             }
           },
+          "InternetGateway": {
+            "id": "InternetGateway",
+            "path": "WordpressCdkStack/InternetGateway",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::EC2::InternetGateway",
+              "aws:cdk:cloudformation:props": {
+                "tags": [
+                  {
+                    "key": "Name",
+                    "value": "wordpress-cdk-dev-internet-gateway"
+                  }
+                ]
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.CfnInternetGateway",
+              "version": "2.19.0"
+            }
+          },
+          "VpcGatewayAttachment": {
+            "id": "VpcGatewayAttachment",
+            "path": "WordpressCdkStack/VpcGatewayAttachment",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::EC2::VPCGatewayAttachment",
+              "aws:cdk:cloudformation:props": {
+                "vpcId": {
+                  "Ref": "Vpc"
+                },
+                "internetGatewayId": {
+                  "Ref": "InternetGateway"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.CfnVPCGatewayAttachment",
+              "version": "2.19.0"
+            }
+          },
           "CDKMetadata": {
             "id": "CDKMetadata",
             "path": "WordpressCdkStack/CDKMetadata",
