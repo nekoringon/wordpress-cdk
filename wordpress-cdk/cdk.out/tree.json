@@ -148,6 +148,139 @@
               "version": "2.19.0"
             }
           },
+          "RouteTable": {
+            "id": "RouteTable",
+            "path": "WordpressCdkStack/RouteTable",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+              "aws:cdk:cloudformation:props": {
+                "vpcId": {
+                  "Ref": "Vpc"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.CfnRouteTable",
+              "version": "2.19.0"
+            }
+          },
+          "PublicRoute": {
+            "id": "PublicRoute",
+            "path": "WordpressCdkStack/PublicRoute",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+              "aws:cdk:cloudformation:props": {
+                "routeTableId": {
+                  "Ref": "RouteTable"
+                },
+                "destinationCidrBlock": "0.0.0.0/0",
+                "gatewayId": {
+                  "Ref": "InternetGateway"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.CfnRoute",
+              "version": "2.19.0"
+            }
+          },
+          "AppRoute": {
+            "id": "AppRoute",
+            "path": "WordpressCdkStack/AppRoute",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+              "aws:cdk:cloudformation:props": {
+                "routeTableId": {
+                  "Ref": "RouteTable"
+                },
+                "destinationCidrBlock": "0.0.0.1/0",
+                "gatewayId": {
+                  "Ref": "InternetGateway"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.CfnRoute",
+              "version": "2.19.0"
+            }
+          },
+          "DbRoute": {
+            "id": "DbRoute",
+            "path": "WordpressCdkStack/DbRoute",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+              "aws:cdk:cloudformation:props": {
+                "routeTableId": {
+                  "Ref": "RouteTable"
+                },
+                "destinationCidrBlock": "0.0.0.2/0",
+                "gatewayId": {
+                  "Ref": "InternetGateway"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.CfnRoute",
+              "version": "2.19.0"
+            }
+          },
+          "AssociationPublic": {
+            "id": "AssociationPublic",
+            "path": "WordpressCdkStack/AssociationPublic",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+              "aws:cdk:cloudformation:props": {
+                "routeTableId": {
+                  "Ref": "RouteTable"
+                },
+                "subnetId": {
+                  "Ref": "SubnetPublic"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.CfnSubnetRouteTableAssociation",
+              "version": "2.19.0"
+            }
+          },
+          "AssociationApp": {
+            "id": "AssociationApp",
+            "path": "WordpressCdkStack/AssociationApp",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+              "aws:cdk:cloudformation:props": {
+                "routeTableId": {
+                  "Ref": "RouteTable"
+                },
+                "subnetId": {
+                  "Ref": "SubnetApp"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.CfnSubnetRouteTableAssociation",
+              "version": "2.19.0"
+            }
+          },
+          "AssociationDb": {
+            "id": "AssociationDb",
+            "path": "WordpressCdkStack/AssociationDb",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+              "aws:cdk:cloudformation:props": {
+                "routeTableId": {
+                  "Ref": "RouteTable"
+                },
+                "subnetId": {
+                  "Ref": "SubnetDb"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.CfnSubnetRouteTableAssociation",
+              "version": "2.19.0"
+            }
+          },
           "CDKMetadata": {
             "id": "CDKMetadata",
             "path": "WordpressCdkStack/CDKMetadata",

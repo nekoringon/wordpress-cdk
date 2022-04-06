@@ -102,10 +102,108 @@
         "aws:cdk:path": "WordpressCdkStack/VpcGatewayAttachment"
       }
     },
+    "RouteTable": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "Vpc"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "WordpressCdkStack/RouteTable"
+      }
+    },
+    "PublicRoute": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "RouteTable"
+        },
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": {
+          "Ref": "InternetGateway"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "WordpressCdkStack/PublicRoute"
+      }
+    },
+    "AppRoute": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "RouteTable"
+        },
+        "DestinationCidrBlock": "0.0.0.1/0",
+        "GatewayId": {
+          "Ref": "InternetGateway"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "WordpressCdkStack/AppRoute"
+      }
+    },
+    "DbRoute": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "RouteTable"
+        },
+        "DestinationCidrBlock": "0.0.0.2/0",
+        "GatewayId": {
+          "Ref": "InternetGateway"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "WordpressCdkStack/DbRoute"
+      }
+    },
+    "AssociationPublic": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "RouteTable"
+        },
+        "SubnetId": {
+          "Ref": "SubnetPublic"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "WordpressCdkStack/AssociationPublic"
+      }
+    },
+    "AssociationApp": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "RouteTable"
+        },
+        "SubnetId": {
+          "Ref": "SubnetApp"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "WordpressCdkStack/AssociationApp"
+      }
+    },
+    "AssociationDb": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "RouteTable"
+        },
+        "SubnetId": {
+          "Ref": "SubnetDb"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "WordpressCdkStack/AssociationDb"
+      }
+    },
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAA/y2OwQrCMAyGn2X3ttrhxaP0IN5kg12l6yJmcym0qUPG3t2Wefq+/H8IqZU+q2NllyjdMMk39mpt2bpJ5OgBrlareVJ3NyKjTT0BF7sRQ8h+tQyL/Yp95z9dOB94zUC8laKB6FNwUNx4GpDR0ybID6DGePjoU/lBV2NElCER4wyq2fkDTwnXcp8AAAA="
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/0WOzQ6CMBCEn4U7VCFePJIejDcDxqsp7RqXn23SbiWG+O4WMHKamZ0vky1EfhT7RI0+06bLemzEVLPSXRpPd9CFmOSDbheZRqlDQ8CzOxODi/6kGEb1Tlfml0qOA88BaEErGxiuqunhn7atrSy9txoVo6XPAoK3wemFlZYMrg1ZA6L1u1d+mD/Pk9YjZi4Q4wCiWvUL+T8WpdUAAAA="
       },
       "Metadata": {
         "aws:cdk:path": "WordpressCdkStack/CDKMetadata/Default"

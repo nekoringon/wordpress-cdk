@@ -1,6 +1,13 @@
 import { Stack, StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import { CfnVPC, CfnSubnet, CfnInternetGateway, CfnVPCGatewayAttachment } from "aws-cdk-lib/aws-ec2";
+import { CfnVPC, 
+	 CfnSubnet, 
+	 CfnInternetGateway, 
+	 CfnVPCGatewayAttachment,
+	 CfnRouteTable,
+	 CfnRoute,
+	 CfnSubnetRouteTableAssociation
+    } from "aws-cdk-lib/aws-ec2";
 
 export class WordpressCdkStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -42,5 +49,42 @@ export class WordpressCdkStack extends Stack {
 	vpcId: vpc.ref,
 	internetGatewayId: igw.ref
     })
-  }
+
+    const routeTable = new CfnRouteTable(this, 'RouteTable', {
+    	vpcId: vpc.ref
+    })
+
+    const routeTablePublic = new CfnRoute(this, 'PublicRoute', {
+	destinationCidrBlock: "0.0.0.0/0",
+	gatewayId: igw.ref,
+	routeTableId:routeTable.ref 
+    })
+    
+//    const routeTableApp = new CfnRoute(this, 'AppRoute', {
+//	destinationCidrBlock: "0.0.0.0/0",
+//	gatewayId: igw.ref,
+//	routeTableId:routeTable.ref 
+//    })
+//
+//    const routeTableDb = new CfnRoute(this, 'DbRoute', {
+//	destinationCidrBlock: "0.0.0.0/0",
+//	gatewayId: igw.ref,
+//	routeTableId:routeTable.ref 
+//    })
+
+    const associationPublic = new CfnSubnetRouteTableAssociation(this, 'AssociationPublic', {
+	routeTableId:routeTable.ref,
+	subnetId: subnetPublic.ref
+    })
+
+//    const associationApp = new CfnSubnetRouteTableAssociation(this, 'AssociationApp', {
+//	routeTableId:routeTable.ref,
+//	subnetId: subnetApp.ref
+//    })
+//
+//    const associationDb = new CfnSubnetRouteTableAssociation(this, 'AssociationDb', {
+//	routeTableId:routeTable.ref,
+//	subnetId: subnetDb.ref
+//    })
+//  }
 }
