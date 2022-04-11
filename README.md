@@ -1,3 +1,2 @@
 # wordpress-cdk
-docker-compose up -d --build 
-docker-compose exec node-dev sh
+docker-compose exec wordpress-cdk-dev sh
